@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<title>Teste técnico LeverPro</title>
+		<meta charset="UTF-8">
+		<link rel='stylesheet' type="text/css" href='index.css'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/x-icon" href="img/favicon.png">
+	</head>
+	<body>
+		<main>
+			<h3>Teste de Programação / Lógica</h3>
+
+			<section>
+				<p class="negrito">1 - Escreva uma função recursiva eficiente que receba inteiros estritamente positivos k e n e calcule k<sup>n</sup>. Quantas multiplicações sua função executa aproximadamente?</p>
+
+				<p> <a href='https://jsfiddle.net/luizaRodrigues/r0oev8fs/23/'>jsfiddle.net</a>  <br>
+				A função executa aproximadamente log n multiplicações, sendo “n” a
+				exponenciação da potência de entrada do problema. Então, enquanto a
+				abordagem ingênua de 2^1000 daria 999 multiplicações, na minha abordagem,
+				esse mesmo número seria aproximadamente 10. </p>
+
+
+				<div class="tela-codigo-pequena">
+					<p>Função sem eficiência:</p>
+					<p class="negrito">Minha resposta:</p>
+
+					<pre>
+		function euclides (m, n) {
+			var r;
+			do {
+				r = m % n;
+				m = n;
+				n = r;
+			} while (r !== 0);
+
+			return m;
+		}
+					</pre>
+
+					<pre>
+		function euclides (m, n) {
+			var r;
+			do {
+				r = m % n;
+				m = n;
+				n = r;
+			} while (r !== 0);
+
+			return m;
+			A
+			a
+			D
+		}
+					</pre>
+			</section>
+
+			<section>
+				<p class="negrito">2 - A seguinte função calcula o maior divisor comum dos inteiros estritamente positivos m e n. Escreva uma função recursiva equivalente.</p>
+
+				<div class="tela-codigo-pequena">
+					<p>Função da questão:</p>
+					<p class="negrito">Minha resposta:</p>
+
+					<pre>
+	function euclides (m, n) {
+		var r;
+		do {
+			r = m % n;
+			m = n;
+			n = r;
+		} while (r !== 0);
+
+		return m;
+	}
+					</pre>
+
+					<pre>
+						
+					</pre>
+				</div>
+			</section>
+
+			<section>
+				<p class="negrito">3 – Refatore o seguinte trecho de código abaixo utilizando Herança.</p>
+
+					<pre class="tela-codigo-grande">
+		class InvestimentoRendaFixaCDI120 {
+			constructor() {
+				this.saldo = 0;
+				this.cdi = 120;
+			}
+
+			investir(valor) {
+				this.saldo += valor;
+			}
+
+			rentabilidadeInvestimento(indice) {
+				this.saldo += this.saldo * indice/100 * this.cdi/100;
+			}
+
+			imprimirSaldo(mes) {
+				console.log('Saldo RF 120% CDI Mês ' + mes + '= R$ ' + this.saldo);
+			}
+		}
+
+
+		class InvestimentoRendaFixaCDI180 {
+			constructor() {
+				this.saldo = 0;
+				this.cdi = 180;
+			}
+
+			investir(valor) {
+				this.saldo += valor;
+			}
+
+			rentabilidadeInvestimento(indice) {
+				this.saldo += this.saldo * indice/100 * this.cdi/100;
+			}
+
+			imprimirSaldo(mes) {
+				console.log('Saldo RF 180% CDI Mês ' + mes + ' = R$ ' + this.saldo);
+			}
+		}
+
+
+		var invest120 = new InvestimentoRendaFixaCDI120();
+		invest120.investir(1000);
+		invest120.imprimirSaldo('Set/2020');
+		invest120.rentabilidadeInvestimento(0.16);
+		invest120.imprimirSaldo('Out/2020');
+
+		var invest180 = new InvestimentoRendaFixaCDI180();
+		invest180.investir(1000);
+		invest180.imprimirSaldo('Set/2020');
+		invest180.rentabilidadeInvestimento(0.16);
+		invest180.imprimirSaldo('Out/2020');
+					</pre>
+
+					<p>Minha resposta:</p>
+					<pre class="tela-codigo-grande">
+						
+					</pre>
+			</section>
+
+			<section>
+				<p class="negrito">4 - Com o trecho de código abaixo faça: </p>
+				<ul class="remove-marcadores-lista">
+					<li>A. Atribua valores as variáveis valBase e valBase2 que sejam dois números positivos e inteiros.
+
+					<li>B. Atribua valores as variáveis valX e valY que sejam a soma de outras 2 variáveis. (exemplo: valX = novoNum1 + novoNum2)
+				</ul>
+
+				<p class="negrito">Quais valores precisam ser atribuídos às variáveis valBase, valBase2, valX e valY para que gere a saída abaixo no console?</p>
+
+				<p class="text-center negrito">10  13  12  6  12  10  387</p>
+
+				<p class="text-center"><img src="img/codigoQuestao4.png"></p>
+
+				<pre class="tela-codigo-grande">
+						
+				</pre>
+			</section>
+
+			<section>
+				<p class="negrito">5 – A função combinarOperacoes recebe dois parâmetros: um valor inicial e um array de funções, e segue as seguintes regras:</p>
+				<ul>
+					<li>combinarOperacoes recebe o valor inicial para a primeira função do array.</li>
+
+					<li>combinarOperacoes passa o valor retornado da primeira função para a segunda função, e assim por diante, até que todas as funções do array tenham sido executados. </li>
+
+					<li>combinarOperacoes retorna o valor final retornado pela última função do array de funções.</li>
+				</ul>
+
+				<p class="text-center"><img src="img/codigoQuestao5.png"></p>
+
+				<pre class="tela-codigo-grande">
+						
+				</pre>
+
+			</section>
+
+			<section>
+				<p class="negrito">6 – O DER abaixo apresenta o diagrama referente ao sistema de banco de dados acadêmico.</p>
+
+				<p class="text-center"><img src="img/DER.png"></p>
+
+				<p class="negrito">Indique a instrução SQL necessária para executar cada uma das solicitações abaixo. Considerar o banco de dados MYSQL 8: </p>
+
+				<p class="negrito">A - Listar a descrição de cada prédio seguido da quantidade de salas existentes, ordenada pela descrição do prédio. Considerar apenas prédios que possuem a quantidade de salas maior do que 3.</p>
+
+				<pre class="tela-codigo-grande">
+						
+				</pre>
+
+
+				<p class="negrito">B - Listar o nome da disciplina seguido da sigla das turmas lecionadas pelo professor Tavares.</p>
+
+				<pre class="tela-codigo-grande">
+						
+				</pre>
+
+				<p class="negrito">C – Consulta SQL que retorna um JSON com o agrupamento de professores, turmas, disciplinas, prédio, sala, dias e horarios no seguinte formato:</p>
+
+				<p class="text-center"><img src="img/json.png"></p>
+
+				<pre class="tela-codigo-grande">
+						
+				</pre>
+			</section>
+		</main>
+	</body>
+</html>

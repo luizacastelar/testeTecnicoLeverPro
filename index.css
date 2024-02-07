@@ -1,0 +1,73 @@
+body {
+	margin: 40px 0px;
+	padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    font-family: Arial;
+    background-image: url("img/background.png");
+    background-size: cover;
+}
+
+main{
+	display: inherit;
+	flex-direction: column;
+	width: 80%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 25px;
+}
+
+section{
+	margin: 20px 0px;
+}
+
+h3:first-child{
+	text-align: center;
+}
+
+.negrito{
+	font-weight: bolder;
+}
+
+pre{	
+	background-color: #282923; 
+	color: white; 
+	white-space: break-spaces;
+	padding: 20px;
+}
+
+
+.text-center{
+	text-align: center;
+}
+
+.tela-codigo-grande{
+	width: 90%;
+	margin: auto;	
+}
+
+
+.tela-codigo-pequena{
+	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.tela-codigo-pequena p{
+	width: 45%;
+}
+
+.tela-codigo-pequena pre{
+	width: 40%;
+}
+
+li{
+	padding: 10px 0px;
+	font-weight: bold;
+}
+
+.remove-marcadores-lista{
+	list-style-type:none;
+}
