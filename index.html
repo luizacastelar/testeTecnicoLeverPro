@@ -14,45 +14,35 @@
 			<section>
 				<p class="negrito">1 - Escreva uma função recursiva eficiente que receba inteiros estritamente positivos k e n e calcule k<sup>n</sup>. Quantas multiplicações sua função executa aproximadamente?</p>
 
-				<p> <a href='https://jsfiddle.net/luizaRodrigues/r0oev8fs/23/'>jsfiddle.net</a>  <br>
-				A função executa aproximadamente log n multiplicações, sendo “n” a
+				<p> A função executa aproximadamente log n multiplicações, sendo “n” a
 				exponenciação da potência de entrada do problema. Então, enquanto a
 				abordagem ingênua de 2^1000 daria 999 multiplicações, na minha abordagem,
 				esse mesmo número seria aproximadamente 10. </p>
 
 
-				<div class="tela-codigo-pequena">
-					<p>Função sem eficiência:</p>
-					<p class="negrito">Minha resposta:</p>
+				<pre class="tela-codigo-grande">
+	function potenciacao(k,n){
 
-					<pre>
-		function euclides (m, n) {
-			var r;
-			do {
-				r = m % n;
-				m = n;
-				n = r;
-			} while (r !== 0);
+		//condicao de parada
+		if (n == 1){
+	  		return k
+	  	}
 
-			return m;
-		}
-					</pre>
+		//para expoente par
+		if (n % 2 == 0){
+	  		let temp = potenciacao(k, n/2)
+	    	return temp * temp
+	  }
+	  	//para expoente impar
+		else{
+	  		let temp = potenciacao(k, (n-1)/2)
+	    	return temp * temp * k
+	  }
+	}
 
-					<pre>
-		function euclides (m, n) {
-			var r;
-			do {
-				r = m % n;
-				m = n;
-				n = r;
-			} while (r !== 0);
 
-			return m;
-			A
-			a
-			D
-		}
-					</pre>
+console.log(potenciacao(4,5))</pre>
+				
 			</section>
 
 			<section>
@@ -76,7 +66,17 @@
 					</pre>
 
 					<pre>
-						
+	function euclides (m, n) {
+		r = m % n;
+
+		if (r === 0){
+			return n;
+	  }
+		
+		return euclides(n, r)
+	}
+
+	console.log(euclides(343,7));
 					</pre>
 				</div>
 			</section>
@@ -138,9 +138,57 @@
 		invest180.imprimirSaldo('Out/2020');
 					</pre>
 
-					<p>Minha resposta:</p>
+					<p class="negrito">Minha resposta:</p>
 					<pre class="tela-codigo-grande">
-						
+			class InvestimentoRendaFixaCDI{
+
+			   	constructor(cdi) {
+			   		this.saldo = 0;
+			   		this.cdi = cdi;
+			   }
+			   
+			   	investir(valor) {
+			   		this.saldo += valor;
+			  	}
+			  
+			  	rentabilidadeInvestimento(indice) {
+			  		this.saldo += this.saldo * indice/100 * this.cdi/100;
+			  	}
+			    
+			    //metodo generico que será sobrescrito pelos filhos
+			  	imprimirSaldo(mes) {
+			  		console.log(`Saldo RF ${this.cdi}%  CDI Mês ` + mes + '= R$ ' + this.saldo);
+			  	}
+			    
+			}
+
+			class InvestimentoRendaFixaCDI120 extends InvestimentoRendaFixaCDI{  
+				//chamando o contrutor do pai e setando o cdi
+				constructor(){
+					super(120)
+		    	}
+			}
+
+			class InvestimentoRendaFixaCDI180 extends InvestimentoRendaFixaCDI{
+				//chamando o contrutor do pai e setando o cdi
+				constructor(){
+					super(180)
+			  }
+			}
+
+			var invest120 = new InvestimentoRendaFixaCDI120();
+			invest120.investir(1000);
+			invest120.imprimirSaldo('Set/2020');
+			invest120.rentabilidadeInvestimento(0.16);
+			invest120.imprimirSaldo('Out/2020');
+
+			var invest180 = new InvestimentoRendaFixaCDI180();
+			invest180.investir(1000);
+			invest180.imprimirSaldo('Set/2020');
+			invest180.rentabilidadeInvestimento(0.16);
+			invest180.imprimirSaldo('Out/2020');
+
+			//console.log(invest120);
 					</pre>
 			</section>
 
@@ -158,9 +206,50 @@
 
 				<p class="text-center"><img src="img/codigoQuestao4.png"></p>
 
+				<div class="text-center">
+					<p class="negrito">valBase = 10, valBase2 = 5, valX = 20 e valY = 11.</p>
+					<p>Para valX ser 20, valX pode ser escrito como, por exemplo: <br>
+					valX = novoNum1 + valBase <br>
+					ou valX = valBase + valBase</p>
+					<p>Para valY ser 11, valY pode ser escrito como, por exemplo: <br>
+					valY = valBase + valX/20</p>
+				</div>
+
 				<pre class="tela-codigo-grande">
-						
-				</pre>
+//De um valor numerico inteiro a estas variaveis
+const valBase = 10;
+const valBase2 = 5;
+
+function fazerAlgo(num1, num2, callback) {
+  callback(num1++, ++num2);
+  console.log(num2);
+}
+
+fazerAlgo(valBase, valBase2, function (novoNum1, novoNum2) {
+//De um valor a estas variaveis que seja a soma de outras variaveis
+  let valX = novoNum1 + valBase;
+  let valY = valBase + valX/20;
+  
+  console.log(novoNum1);
+  
+  fazerAlgo(valX, valY, function(valBase, valBase2) {
+    
+    setTimeout(function() {
+        console.log(novoNum1);
+    }, 1000, valBase);
+  
+    fazerAlgo(Math.pow(valBase,2), valBase2, function (valFinal1, valFinal2) {
+
+      setTimeout(function(){
+        console.log(valFinal1 - valFinal2);
+      }, 1000, valBase);
+    });
+
+    setTimeout(function(){
+    	console.log(valBase2);
+    }, 500, valBase);
+  });
+});</pre>
 			</section>
 
 			<section>
@@ -175,10 +264,126 @@
 
 				<p class="text-center"><img src="img/codigoQuestao5.png"></p>
 
-				<pre class="tela-codigo-grande">
-						
-				</pre>
+				<p class="negrito">A – Implemente a função combinarOperacoes utilizando callbacks.</p>
 
+				<pre class="tela-codigo-grande">
+function adicionaCem(num) {
+	return num + 100;
+}
+function dividePorCinco(num) {
+	return num / 5;
+}
+function multiplicaPorTres(num) {
+	return num * 3;
+}
+function mutiplicaPorCinco(num) {
+	return num * 5;
+}
+function adicionaDez(num) {
+	return num + 10;
+}
+
+function combinarOperacoes(numero, funcoes){
+
+  let acumulador = numero;
+  
+  funcoes.forEach((funcao) =>{
+  	acumulador = funcao(acumulador)
+  });
+  
+  return acumulador;
+  
+  
+  /*OU BEM MAIS SIMPLES E NÃO FLEXIVEL 
+  return funcoes[2](funcoes[1](funcoes[0](numero))); */
+
+
+  /* OU USANDO REDUCE 
+  const reducao = funcoes.reduce(
+  	(accumulator, currentValue) => currentValue(accumulator), numero);
+
+	return reducao;*/
+}
+
+console.log(combinarOperacoes(0, [adicionaCem, dividePorCinco, multiplicaPorTres]));
+// Valor Final = 60
+
+console.log(combinarOperacoes(0, [dividePorCinco, mutiplicaPorCinco, adicionaDez]));
+// Valor Final = 10</pre>
+
+				<p class="negrito">B – Implemente a função combinarOperacoes utilizando Promise. </p>
+
+				<pre class="tela-codigo-grande">
+function adicionaCem(num) {
+	return num + 100;
+}
+function dividePorCinco(num) {
+	return num / 5;
+}
+function multiplicaPorTres(num) {
+	return num * 3;
+}
+function mutiplicaPorCinco(num) {
+	return num * 5;
+}
+function adicionaDez(num) {
+	return num + 10;
+}
+
+function combinarOperacoes(numero, funcoes){
+
+	const promise = Promise.resolve(numero)
+   .then((resultado)=> funcoes[0](resultado)) 
+   
+   .then((resultado)=> funcoes[1](resultado))
+    
+   .then((resultado)=> funcoes[2](resultado))
+      
+  return promise;
+}
+
+combinarOperacoes(0, [adicionaCem, dividePorCinco, multiplicaPorTres]).then((resultado)=> console.log(resultado))
+// Valor Final = 60
+
+combinarOperacoes(0, [dividePorCinco, mutiplicaPorCinco, adicionaDez]).then((resultado)=> console.log(resultado))
+// Valor Final = 10</pre>
+
+				<p class="negrito">C – Implemente a função combinarOperacoes utilizando async / await. </p>
+
+				<pre class="tela-codigo-grande">
+function adicionaCem(num) {
+	return Promise.resolve(num + 100)
+}
+function dividePorCinco(num) {
+	return Promise.resolve(num / 5)
+}
+function multiplicaPorTres(num) {
+	return Promise.resolve(num * 3)
+}
+function mutiplicaPorCinco(num) {
+	return Promise.resolve(num * 5);
+}
+function adicionaDez(num) {
+	return Promise.resolve(num + 10);
+}
+
+async function combinarOperacoes(numero, funcoes){
+
+  const resultadoFuncao1 = await funcoes[0](numero)
+ 
+ 	const resultadoFuncao2 = await funcoes[1](resultadoFuncao1)
+
+	const resultadoFuncao3 = await funcoes[2](resultadoFuncao2)
+
+	return (resultadoFuncao3)
+}
+
+combinarOperacoes(0, [adicionaCem, dividePorCinco, multiplicaPorTres]).then(resultado => console.log(resultado));
+// Valor Final = 60
+
+combinarOperacoes(0, [dividePorCinco, mutiplicaPorCinco, adicionaDez]).then(resultado => console.log(resultado));
+// Valor Final = 10
+</pre>
 			</section>
 
 			<section>
@@ -191,15 +396,34 @@
 				<p class="negrito">A - Listar a descrição de cada prédio seguido da quantidade de salas existentes, ordenada pela descrição do prédio. Considerar apenas prédios que possuem a quantidade de salas maior do que 3.</p>
 
 				<pre class="tela-codigo-grande">
-						
+SELECT predio.descricaopredio, count(sala.numsala) as numsalas FROM `predio`
+	join sala on sala.codpredio = predio.codpredio
+	group by predio.codpredio
+	having numSalas > 3
+	order by descricaopredio
 				</pre>
 
 
 				<p class="negrito">B - Listar o nome da disciplina seguido da sigla das turmas lecionadas pelo professor Tavares.</p>
 
 				<pre class="tela-codigo-grande">
-						
-				</pre>
+select nomedisc, siglatur from disciplina
+	join turma using(coddepto, numdisc)
+	join profturma using (coddepto, numdisc, anosem, siglatur)
+	join professor using(codprof)
+	where nomeprof like '%Tavares%' 
+
+OU 
+
+select nomedisc, GROUP_CONCAT(siglatur SEPARATOR ', ') siglatur from
+
+	(select nomedisc, siglatur from disciplina
+		join turma using(coddepto, numdisc)
+		join profturma using (coddepto, numdisc, anosem, siglatur)
+		join professor using(codprof)
+		where nomeprof like '%Tavares%') resultado
+
+group by nomedisc</pre>
 
 				<p class="negrito">C – Consulta SQL que retorna um JSON com o agrupamento de professores, turmas, disciplinas, prédio, sala, dias e horarios no seguinte formato:</p>
 
@@ -207,6 +431,36 @@
 
 				<pre class="tela-codigo-grande">
 						
+select JSON_ARRAYAGG(json_object(
+	'nome_professor', nomeprof,
+	'turmas', turmas)) as ''
+	from
+	(select nomeprof,
+		JSON_ARRAYAGG(json_object(
+			'ano_semestre_turma', anosem, 
+			'sigla_turma', siglatur,
+			'capacidade_turma', turmacapacidade,
+			'nome_disciplina', nomedisc,
+			'descricao_predio', descricaopredio,
+			'num_sala', numsala,
+			'dias_horarios', dias_horarios
+			)) as turmas	
+			from
+		(select 
+		 codpredio, numsala, coddepto, numdisc, anosem, siglatur, nomeprof, turmacapacidade, nomedisc, descricaopredio,
+		 JSON_ARRAYAGG(json_object('dia_semana', diasem, 'horario_inicio', horainicio)) as dias_horarios
+		from 
+		    (select codprof, turma.coddepto, numdisc, anosem, siglatur, nomedisc, turma.capacidade as turmacapacidade, nomeprof   
+		     from disciplina
+		    join turma using(coddepto, numdisc)
+		    join profturma using (coddepto, numdisc, anosem, siglatur)
+		    join professor using(codprof)) relacaoDiscTurmProf
+			left join horario using (coddepto, numdisc, anosem, siglatur)
+		    join sala using(codpredio, numsala)
+		    join predio using (codpredio)
+		    GROUP by codpredio, numsala, coddepto, numdisc, anosem, siglatur, nomeprof) resultado
+	 GROUP by nomeprof) jsonfinal 
+
 				</pre>
 			</section>
 		</main>
